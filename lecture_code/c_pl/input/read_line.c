@@ -16,7 +16,7 @@ int readline(int print) {
   // Returns 0 if EOF encountered!
 
   // getchar /actually/ returns an int. The reason for this is
-  // 
+  // i
   for (int c = getchar(); c != '\n'; c = getchar()) {
     if (c == EOF) {
       return 0;
