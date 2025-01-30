@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <string>
 void printStrings(const char *arr, const unsigned int len) {
   /*
   * This function takes in an arr that contains characters and
@@ -21,6 +21,12 @@ void printStrings(const char *arr, const unsigned int len) {
 }
 
 int main() {
+  char test1 = {'a', 'b', '\0', 'h', 'e', 'l', 'l', 'o', '\0', 'x', 'y', 'z', '\0'};
+  printStrings(test1, sizeof(test1)/sizeof(test1[0]));
+  char test2 = {'h', 'i', ' ', 'p', 'a', 'l', '\0', 'b', 'y', 'e', '\0'};
+  printStrings(test2, sizeof(test2)/sizeof(test2[0]));
+  const char *single = "This is only one string!";
+  printStrings(single, strlen(single) + 1);
   // A string in c is a null-terminated array of characters.
   // An array of characters that does not have a null terminator in it
   // is not a string, it's simply an array of cahracters.
