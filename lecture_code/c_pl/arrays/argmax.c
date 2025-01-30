@@ -1,6 +1,14 @@
 #include <stdio.h>
 
-
+// Now that we've learned about const, here is an example where we'd
+// pass a pointer but declare the data const. Here, because of array
+// decay, we know that arr is actually just the same as int *arr.
+// Since this is a pointer to our data we could mutate it. Is there
+// any reason that the function argmax should be mutating our data?
+// NO! It's purpose is to return the index of our maximal item, it is
+// not meant to change our array. So, we should actually declare our
+// arr param here as:
+// const int arr[]
 int argmax(int arr[], unsigned int len) {
   /*
     arr is a non-empty array of integers, len is its size.
