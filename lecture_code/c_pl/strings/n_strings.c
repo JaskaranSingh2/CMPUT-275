@@ -18,6 +18,18 @@ void printStrings(const char *arr, const unsigned int len) {
   * hello
   * xyz
   */
+  // We know by definition this arr contains at least one string, though it
+  // might be the empty string, either way, that's fine. We'll print it
+  // right at the start! That will print the first string.
+  printf("%s\n", arr);
+  // Now, we need to iterate over the array, and each time we see a null terminator
+  // before the end of the array, that means there's another string after it we should print
+  // So we iterate over the whole array looking for null terminators.
+  for (unsigned int i = 0; i < len-1; ++i) {
+    if (arr[i] == '\0') {
+      printf("%s\n", arr + i + 1);
+    }
+  }
 }
 
 int main() {
