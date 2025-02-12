@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 int insert(int *arr, int size, int cap, int x) {
   if (size + 1 > cap) {
     // We cannot insert, it's full!
@@ -34,9 +34,10 @@ void printArray(int *p, int size) {
 }
 
 int main() {
-  const int size = 100;
+  int size = 0;
+  scanf("%d", &size);
   int len = 0;
-  int arr[size];
+  int *arr = malloc(sizeof(int)*size);
   int x;
   while (!feof(stdin)) {
     int rc = scanf("%d", &x);
@@ -49,4 +50,5 @@ int main() {
     }
   }
   printArray(arr, len);
+  free(arr);
 }
