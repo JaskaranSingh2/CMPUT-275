@@ -10,6 +10,6 @@ for file_stem in "${file_stems[@]}"; do
     if [[ -f "${file_stem}.desc" ]]; then # Although the curly-braces aren't necessary here I just maintain them for neatness. We use -f for regular files, and -e for anything, but we just want to know the regular file effectively.
         cat "${file_stem}.desc"
     else
-        echo "${file_stem}: No test description"
+        echo "${file_stem} No test description"
     fi
 done
