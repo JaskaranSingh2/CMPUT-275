@@ -10,13 +10,19 @@ int main(int argc, char **argv) {
   int wc = 0; // word count
   int cc = 0; // character count
   char lastChar = ' ';
-  // There is a better way to initializing these variables.
+  // The ternary operator here replaces the need to initialize my
+  // variables, then write an if to update their value if some condition
+  // were true.
+  int printChars = argc > 1 ? 0 : 1;
+  int printWords = printChars, printLines = printChars;
+  /*
   int printChars = 1, printWords = 1, printLines = 1;
   if (argc > 1) {
     printChars = 0;
     printWords = 0;
     printLines = 0;
   }
+  */
   for (int i = 1; i < argc; ++i) {
     if (!strcmp(argv[i], "-l")) {
       printLines = 1;
