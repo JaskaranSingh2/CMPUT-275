@@ -7,5 +7,5 @@ done
 
 
 for x in $(cat /home/rob/w25_cmput275/bash_scripts/alice.txt); do
-  echo ${x}
+  echo The word is: ${x}
 done

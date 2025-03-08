@@ -1,0 +1,62 @@
+x << y (shift x left by y bits)
+
+Is move the bits of x left y positions,
+any ones that run off the end are gone,
+and add 0s to the right to fill the space
+
+For example, if x is the number 10011011
+and you did x << 2
+
+01101100
+
+x >> y (shift x right by y bits)
+
+If x is an unsigned type then C will do 
+a LOGICAL left shift
+
+LLS is shift the values to the right, anything that
+goes past the 2^0 bit disappears, and pad to the
+left with 0s.
+
+So if x is 10010110
+and x is an unsigned type so we do logical left
+shift
+then x >> 2 is
+
+00100101
+
+Similarly, if x IS a signed type but it is is
+positive (i.e. its sign bit is not set) then
+an arithmetic right shift is done HOWEVER, an
+arithmetic right shift on a positive number is
+the same as a logical left shift
+so if x = 01100111
+and x >> 1
+then the result is
+00110011
+
+If x is a signed type, and it is negative
+(i.e. the sign bit is set) then an arithmetic
+right shift is done, however for an arithmetic
+right shift on a NEGATIVE NUMBER, we must pad it
+with 1s.
+So if x = 10000011
+and x >> 3 is computed
+the result is
+11110000
+
+
+
+Single & is the BITWISE and operator. The operator x & y returns
+a new number with only bits set to 1 if they were 1 in both x and
+y. The result of x&y is a number where the bit in position i is
+1 if the bit in position i of x and y is 1, otherwise it is 0.
+
+e.g.
+
+10101111 & 01100000 = 00100000
+
+For any character C,
+
+C&1000 0000 = EITHER 0000 0000 if C doesn't have the 2^7 bit set,
+              OR its 1000 0000 if C does have the 2^7 bit set
