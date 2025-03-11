@@ -31,6 +31,10 @@ int pop(struct Array *a) {
   return a->arr[--a->len];
 }
 
+void destroyArray(struct Array *a) {
+  free(a->arr);
+}
+
 int main() {
   int x;
   struct Array a = newArray();
@@ -45,5 +49,5 @@ int main() {
     printf("%d\n", pop(&a));
   }
   printf("\n");
-  free(a.arr);
+  destroyArray(&a);
 }
