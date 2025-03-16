@@ -1,0 +1,9 @@
+a x -5
+a x -10
+a y 5
+a y 10
+p x
+p y
+u
+i
+q

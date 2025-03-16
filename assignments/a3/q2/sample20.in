@@ -1,0 +1,14 @@
+a x 100
+a x 200
+a x 300
+a y 200
+a y 300
+a y 400
+r x 100
+a x 500
+r y 200
+p x
+p y
+u
+i
+q

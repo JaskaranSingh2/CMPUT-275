@@ -1,0 +1,19 @@
+a x 5
+a x 10
+a x 15
+a y 10
+a y 15
+a y 20
+p x
+p y
+u
+r x 10
+r y 15
+p x
+p y
+i
+a x -30
+a y -30
+u
+i
+q
