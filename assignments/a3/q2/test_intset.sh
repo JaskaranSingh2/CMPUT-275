@@ -8,7 +8,7 @@ for input_file in "${input_files[@]}"; do
     echo "Testing with input file: $input_file"
 
     # Run your implementation
-    ./intset < "$input_file" > your_output.txt
+    ./int_set < "$input_file" > your_output.txt
     your_status=$?
 
     # Run the sample implementation
