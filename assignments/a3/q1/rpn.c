@@ -92,7 +92,6 @@ int main() {
     char input[1024];
     fgets(input, sizeof(input), stdin);
 
-    // process input: replace "\t" with '\t' and "\n" with '\n'
     processInput(input);
 
     // Tokenize input with dynamic memory
