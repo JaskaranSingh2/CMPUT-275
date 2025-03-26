@@ -26,10 +26,10 @@ run_test() {
     SAMPLE_OUTPUT="sample_output.txt"
     
     # Run both implementations
-    $USER_PROGRAM $(cat "$test.args") < "$test.in" > $YOUR_OUTPUT
+    $USER_PROGRAM < "$test.in" > $YOUR_OUTPUT
     your_status=$?
     
-    $SAMPLE $(cat "$test.args") < "$test.in" > $SAMPLE_OUTPUT
+    $SAMPLE < "$test.in" > $SAMPLE_OUTPUT
     sample_status=$?
 
     # Compare outputs
