@@ -7,7 +7,7 @@ NC='\033[0m'
 SAMPLE="./sequences_sample"
 USER_PROGRAM="./sequences"
 
-TESTS="test1 test2 test3 test4"
+TESTS="test1 test2 test3 test4 test5 test6 test7 test8 test9 test10"
 
 passed=0
 failed=0

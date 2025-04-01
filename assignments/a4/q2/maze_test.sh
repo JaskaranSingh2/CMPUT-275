@@ -11,7 +11,7 @@ SAMPLE="./maze_sample"
 USER_PROGRAM="./maze"
 
 # Array of input files
-input_files=($(seq -f "test%.0f" 1 4))
+input_files=($(seq -f "test%.0f" 1 19))
 
 passed=0
 failed=0
@@ -50,8 +50,8 @@ run_test() {
         YOUR_VISIBLE="your_visible.txt"
         SAMPLE_VISIBLE="sample_visible.txt"
         
-        > $YOUR_VISIBLE
-        > $SAMPLE_VISIBLE
+> $YOUR_VISIBLE
+> $SAMPLE_VISIBLE
         
         # Process files to make whitespace visible
         while IFS= read -r line; do
