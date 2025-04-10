@@ -3,20 +3,14 @@
 #include <stdlib.h>
 
 // Colors
-#define GREEN "\033[42m"
-#define YELLOW "\033[43m"
-#define WHITE "\033[47m"
+#define GREEN "\033[32m"
+#define YELLOW "\033[33m"
+#define WHITE "\033[37m"
 #define RESET "\033[0m"
 
 // func. to set the color to print
 void setColour(const char* colour) {
-    static const char* currentColour = "";
-    
-    // only print the color code if it's diff from the current color
-    if (strcmp(colour, currentColour) != 0) {
-        printf("%s", colour);
-        currentColour = colour;
-    }
+    printf("%s", colour);
 }
 
 int main(int argc, char* argv[]) {
@@ -41,8 +35,8 @@ int main(int argc, char* argv[]) {
     
     // Game loop - max 6 guesses
     while (guessCount < 6) {
-        // Get user guess
-        printf("Enter guess: ");
+        // Get user guess - ensure no color codes are active
+        printf("%sEnter guess: ", RESET);
         scanf("%12s", guess);
         guessCount++;
         
@@ -92,8 +86,10 @@ int main(int argc, char* argv[]) {
         }
         
         // Reset color and print newline
-        setColour(RESET);
-        printf("\n");
+        printf("%s\n", RESET);
+        
+        // Free allocated memory
+        free(green);
         
         // Check if guess was correct
         if (correctGuess) {
