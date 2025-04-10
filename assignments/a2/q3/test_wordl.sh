@@ -33,10 +33,11 @@ run_test() {
     echo "$your_output" > my_output.txt
     echo "$sample_output" > sample_output.txt
 
-    # echo -e "${YELLOW}--- Your Output (visible whitespace):${NC}"
-    # cat -A my_output.txt
-    # echo -e "${YELLOW}--- Sample Output (visible whitespace):${NC}"
-    # cat -A sample_output.txt
+    # Show raw ANSI codes
+    echo -e "${YELLOW}--- Your Output (with visible ANSI codes):${NC}"
+    cat -A my_output.txt
+    echo -e "${YELLOW}--- Sample Output (with visible ANSI codes):${NC}"
+    cat -A sample_output.txt
 
     if cmp -s my_output.txt sample_output.txt; then
         echo -e "${GREEN}✅ Output matches exactly!${NC}"
@@ -54,11 +55,6 @@ run_test() {
         diff -u --color=always sample_visible.txt my_visible.txt | grep -v "^@@" | grep -v "^---" | grep -v "^+++"
 
         ((failed++))
-
-        echo -e "${BLUE}--- Sample Output:${NC}"
-        cat sample_output.txt
-        echo -e "${BLUE}--- Test Output:${NC}"
-        cat my_output.txt
     fi
 
     echo -e "${NC}----------------------------------------"

@@ -2,104 +2,96 @@
 #include <string.h>
 #include <stdlib.h>
 
-// Colors
-#define GREEN "\033[32m"
-#define YELLOW "\033[33m"
-#define WHITE "\033[37m"
-#define RESET "\033[0m"
+// Colour codes
+const char *YELLOW = "\x1b[33m";
+const char *GREEN = "\x1b[32m";
+const char *WHITE = "\x1b[0m";
 
-// func. to set the color to print
-void setColour(const char* colour) {
-    printf("%s", colour);
+const char *currentColour = NULL;
+
+void setColour(const char *colour)
+{
+    if (currentColour != colour)
+    {
+        printf("%s", colour);
+        currentColour = colour;
+    }
 }
 
-int main(int argc, char* argv[]) {
-    // check if we have the correct number of arguments
-    if (argc != 2) {
+int main(int argc, char *argv[])
+{
+    if (argc != 2)
+    {
+        printf("Usage: ./wordl <word>\n");
         return 1;
     }
-    
-    // Get the code word from command line arguments
-    const char* theWord = argv[1];
-    int wordLength = strlen(theWord);
-    
-    // Validate the code word length (should be <= 12)
-    if (wordLength > 12) {
-        printf("Code word too long!\n");
-        return 1;
-    }
-    
-    char guess[13];  // Max 12 chars + null terminator
+
+    const char *code = argv[1];
+    int codeLen = strlen(code);
     int guessCount = 0;
-    int correctGuess = 0;
-    
-    // Game loop - max 6 guesses
-    while (guessCount < 6) {
-        // Get user guess - ensure no color codes are active
-        printf("%sEnter guess: ", RESET);
-        scanf("%12s", guess);
-        guessCount++;
-        
-        // If length doesn't match, skip (per spec we can assume they match)
-        if (strlen(guess) != wordLength) {
-            guessCount--;
+    char guess[13];
+
+    while (guessCount < 6)
+    {
+        printf("Enter guess: ");
+        if (!fgets(guess, sizeof(guess), stdin))
+            break;
+        guess[strcspn(guess, "\n")] = 0;
+
+        if (strlen(guess) != codeLen)
             continue;
-        }
-        
-        // Process the guess
-        correctGuess = 1;
-        
-        // Count letters in the code
-        int letterCounts[26] = {0};
-        for (int i = 0; i < wordLength; i++) {
-            letterCounts[theWord[i] - 'a']++;
-        }
-        
-        // First, mark the green letters (correct positions)
-        int *green = (int *)malloc(wordLength * sizeof(int));
-        memset(green, 0, wordLength * sizeof(int));
-        
-        for (int i = 0; i < wordLength; i++) {
-            if (guess[i] == theWord[i]) {
+
+        int green[12] = {0};
+        int codeCounts[128] = {0};
+
+        // Count characters in code
+        for (int i = 0; i < codeLen; i++)
+            codeCounts[(int)code[i]]++;
+
+        // Mark green characters and deduct counts
+        for (int i = 0; i < codeLen; i++)
+        {
+            if (guess[i] == code[i])
+            {
                 green[i] = 1;
-                letterCounts[theWord[i] - 'a']--;
-            } else {
-                correctGuess = 0;  // Not a perfect match
+                codeCounts[(int)guess[i]]--;
             }
         }
-        
-        // Now print the guess with appropriate colors
-        for (int i = 0; i < wordLength; i++) {
-            if (green[i]) {
-                // Letter is in the correct position
+
+        // Process colors
+        currentColour = WHITE; // Assume reset state after prompt
+        for (int i = 0; i < codeLen; i++)
+        {
+            char ch = guess[i];
+            if (green[i])
+            {
                 setColour(GREEN);
-            } else if (letterCounts[guess[i] - 'a'] > 0) {
-                // Letter exists in the code but in a different position
+            }
+            else if (codeCounts[(int)ch] > 0)
+            {
                 setColour(YELLOW);
-                letterCounts[guess[i] - 'a']--;
-            } else {
-                // Letter is not in the code
+                codeCounts[(int)ch]--;
+            }
+            else
+            {
                 setColour(WHITE);
             }
-            
-            printf("%c", guess[i]);
+            putchar(ch);
         }
-        
-        // Reset color and print newline
-        printf("%s\n", RESET);
-        
-        // Free allocated memory
-        free(green);
-        
-        // Check if guess was correct
-        if (correctGuess) {
+
+        // Print newline first, then reset color
+        printf("\n");
+        setColour(WHITE);
+
+        guessCount++;
+
+        if (strcmp(guess, code) == 0)
+        {
             printf("Finished in %d guesses\n", guessCount);
             return 0;
         }
     }
-    
-    // If we get here, all 6 guesses were used
-    printf("Failed to guess the word: %s\n", theWord);
-    
+
+    printf("Failed to guess the word: %s\n", code);
     return 0;
 }
