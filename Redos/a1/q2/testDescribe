@@ -1,0 +1,16 @@
+#!/bin/bash
+# FilePath Command Line Argument
+filepath=$1
+
+if [[ -z $1 ]]; then
+    echo "Usage: $0 testSetFile" >&2
+    exit 1
+fi
+
+for item in $(< $filepath); do
+    if [[ -e "${item}.desc" ]]; then 
+        cat "${item}.desc"
+    else
+        echo "${item} No test description"
+    fi
+done
