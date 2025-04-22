@@ -8,5 +8,4 @@ void doubleArray(int *arr, size_t len) {
   mutateAdd(arr, arr, len);
 }
 
-
 #endif
