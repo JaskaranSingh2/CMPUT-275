@@ -26,7 +26,9 @@ int main() {
   //cout << mymax<int>(a,b) << endl;
   cout << mymax(c1, c2) << endl;
   //cout << mymax<char>(c1, c2) << endl;
+  #ifndef OMITFOO
   cout << mymax(f1, f2) << endl;
+  #endif
   //cout << mymax<Foo>(f1, f2) << endl;
 }
 

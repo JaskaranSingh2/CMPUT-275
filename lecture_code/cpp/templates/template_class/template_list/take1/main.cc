@@ -1,12 +1,12 @@
-#include "list.h"
 #include <iostream>
+#include "list.h"
 using namespace std;
 
 int main() {
-  char c;
-  List l;
-  while (cin >> c) {
-    l.addToFront(c);
+  List<int> l;
+  int x;
+  while (cin >> x) {
+    l.push(x);
   }
   for (int i = 0; i < l.length(); ++i) {
     cout << l.ith(i) << endl;

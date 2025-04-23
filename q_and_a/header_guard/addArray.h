@@ -1,7 +1,5 @@
-#ifndef ADDARRAY_H // NEVER start your preprocessor constants/flags with
-// and underscore. Those names are reserved for the implementation
+#ifndef ADDARRAY_H
 #define ADDARRAY_H
-
 #include <stddef.h>
 
 // This function takes two arrays of integers,
@@ -13,7 +11,7 @@
 // and src array is s_1, ... s_n
 // Then dest array becomes
 // d_1+s_1, ..., d_n+s_n
-void mutateAdd(int *dest, int *src, size_t len) {
+int mutateAdd(int *dest, int *src, size_t len) {
   for (size_t i = 0; i < len; ++i) {
     dest[i] = dest[i] + src[i];
   }
